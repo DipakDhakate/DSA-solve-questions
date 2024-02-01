@@ -1,0 +1,49 @@
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        // return sort(nums.begin(),nums.end());
+
+        //counting 
+        // int zeros,ones,twos;
+        // zeros=ones=twos=0;
+
+        // for(int i=0;i<nums.size();i++){
+        //     if(nums[i]==0){
+        //         zeros++;
+        //     }
+        //     else if(nums[i]==1){
+        //         ones++;
+        //     }
+        //     else{
+        //         twos++;
+        //     }
+        // }
+        // int i=0;
+        // while(zeros--){
+        //     nums[i++]=0;
+        // }
+        // while(ones--){
+        //     nums[i++]=1;
+        // }
+        // while(twos--){
+        //     nums[i++]=2;
+        // }
+
+        //in place 3 pointer approch
+        int m=0,l=0,n=nums.size()-1;
+        while(m<=n){
+            if(nums[m]==0){
+                swap(nums[l],nums[m]);
+                l++;
+                m++;
+            }
+            else if(nums[m]==1){
+                m++;
+            }
+            else if(nums[m]==2){
+                swap(nums[m],nums[n]);
+                n--;
+            }
+        }
+    }
+};
