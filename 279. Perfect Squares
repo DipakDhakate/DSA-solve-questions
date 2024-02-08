@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int numsquarehelper(int n,vector<int>&dp){
+        if(n==0) return 1;
+        if(n<0) return 0;
+
+        if(dp[n]!=-1) return dp[n];
+
+        int ans=INT_MAX;
+        int i=1;
+        int end=sqrt(n);
+        while(i<=end){
+            int perfectsquare=i*i;
+            int numofperfectsquare=1+numsquarehelper(n-perfectsquare,dp);
+            if(numofperfectsquare<ans){
+                ans=numofperfectsquare;
+            }
+            i++;
+        }
+        dp[n]=ans;
+        return dp[n];
+    }
+    int numSquares(int n) {
+        vector<int> dp(n+1,-1);
+        return numsquarehelper(n,dp)-1;
+    }
+};
